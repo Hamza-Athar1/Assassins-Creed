@@ -1,5 +1,19 @@
 html {
   cursor: url("assets/achand.png"), auto;
+  font-size: 16px; /* Base font size for rem calculations */
+}
+
+/* Prevent excessive scaling on very large screens */
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 18px; /* Slightly larger on very large screens but not excessive */
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  html {
+    font-size: 20px; /* Cap the scaling for ultra-wide screens */
+  }
 }
 *:hover {
   cursor: url("assets/achand.png"), auto;
@@ -26,7 +40,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "acf";
-  font-size: 16px;
+  font-size: 1rem; /* Use rem for responsive scaling */
   overflow-x: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -61,7 +75,7 @@ nav a {
   color: #fff;
   text-decoration: none;
   margin: 0 45px;
-  font-size: 20px;
+  font-size: 1.25rem; /* 20px equivalent but responsive */
   transition: all 0.3s ease;
   padding: 10px 15px;
   border-radius: 5px;
@@ -148,7 +162,7 @@ video {
 }
 
 .hh {
-  font-size: 48px;
+  font-size: 2.5rem; /* 40px equivalent but more reasonable */
   margin: 0 0 15px 0;
   white-space: nowrap;
   transition: all 0.3s ease;
@@ -162,7 +176,7 @@ video {
 }
 
 .ph {
-  font-size: 20px;
+  font-size: 1.125rem; /* 18px equivalent but responsive */
   margin: 0;
   white-space: nowrap;
   transition: all 0.3s ease;
@@ -175,12 +189,12 @@ video {
   transform: scale(1.02);
 }
 h1 {
-  font-size: 48px;
+  font-size: 2.5rem; /* More reasonable size */
   margin-bottom: 20px;
 }
 
 p {
-  font-size: 24px;
+  font-size: 1.25rem; /* More reasonable size */
   margin-bottom: 40px;
 }
 .audio {
@@ -200,9 +214,13 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+  html {
+    font-size: 14px; /* Smaller base font on mobile */
+  }
+  
   nav a {
     margin: 0 15px;
-    font-size: 16px;
+    font-size: 1rem;
     padding: 8px 12px;
   }
 
@@ -223,11 +241,11 @@ p {
   }
 
   .hh {
-    font-size: 32px;
+    font-size: 2rem; /* Smaller on tablets */
   }
 
   .ph {
-    font-size: 16px;
+    font-size: 1rem; /* Smaller on tablets */
   }
 
   .welcome {
@@ -247,13 +265,17 @@ p {
 }
 
 @media screen and (max-width: 480px) {
+  html {
+    font-size: 12px; /* Even smaller base font on mobile */
+  }
+  
   nav {
     padding: 10px 0;
   }
 
   nav a {
     margin: 0 8px;
-    font-size: 14px;
+    font-size: 0.875rem;
     padding: 6px 10px;
   }
 
@@ -274,11 +296,11 @@ p {
   }
 
   .hh {
-    font-size: 24px;
+    font-size: 1.5rem; /* Smaller on mobile */
   }
 
   .ph {
-    font-size: 14px;
+    font-size: 0.875rem; /* Smaller on mobile */
   }
 
   .welcome {
