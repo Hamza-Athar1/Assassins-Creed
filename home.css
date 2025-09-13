@@ -1,11 +1,11 @@
 html {
-  cursor: url("achand.png"), auto;
+  cursor: url("assets/achand.png"), auto;
 }
 *:hover {
-  cursor: url("achand.png"), auto;
+  cursor: url("assets/achand.png"), auto;
 }
 *:active {
-  cursor: url("acactive.png"), auto;
+  cursor: url("assets/acactive.png"), auto;
 }
 @font-face {
   font-family: "acf";
@@ -14,16 +14,31 @@ html {
   font-style: normal;
 }
 ::-webkit-scrollbar {
-  scrollbar-width: none;
+  width: 0px;
+  background: transparent;
 }
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "acf";
-  font-size: 16px; /* Set the base font size */
-  overflow: scroll;
+  font-size: 16px;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
+.main {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 header {
   background-color: transparent;
   color: #fff;
@@ -31,23 +46,32 @@ header {
 }
 
 nav {
-  background-color: transparent;
-  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 15px 0;
   text-align: center;
-  position: absolute;
+  position: fixed;
+  top: 0;
   width: 100%;
   z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
-  margin: 90px;
-  font-size: 1.2em;
-  transition: 0.5s;
+  margin: 0 45px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: inline-block;
 }
+
 nav a:hover {
-  font-size: 25px;
+  background-color: rgba(146, 0, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 video {
@@ -61,57 +85,94 @@ video {
 }
 
 .content {
-  display: flexbox;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   color: #fff;
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  padding-top: 80px;
 }
+
 .logo {
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: -1;
-  height: 400px;
-  width: 400px;
-  opacity: 0.65;
+  z-index: 1;
+  height: 450px;
+  width: 450px;
+  opacity: 0.9;
   object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(146, 0, 0, 0.6));
+  transition: all 0.3s ease;
 }
+
+.logo:hover {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.08);
+  filter: drop-shadow(0 0 30px rgba(146, 0, 0, 0.8));
+}
+
 .text {
   position: absolute;
-  top: 45%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 0;
+  z-index: 2;
   height: 500px;
   width: 500px;
   object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.9));
+  transition: all 0.3s ease;
+}
+
+.text:hover {
+  transform: translate(-50%, -50%) scale(1.02);
 }
 .welcome {
   position: absolute;
-  display: inline;
-  bottom: 5px;
+  bottom: 100px;
   left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  transform: translate(-50%, -50%);
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 25px 45px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(146, 0, 0, 0.4);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
+
 .hh {
-  font-size: 45px;
+  font-size: 48px;
+  margin: 0 0 15px 0;
   white-space: nowrap;
-  transition: 0.5s;
+  transition: all 0.3s ease;
   color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
+
 .hh:hover {
-  font-size: 50px;
+  color: rgb(220, 50, 50);
+  transform: scale(1.05);
 }
+
 .ph {
   font-size: 20px;
+  margin: 0;
   white-space: nowrap;
-  transition: 0.5s;
-  color: rgb(165, 34, 34);
+  transition: all 0.3s ease;
+  color: rgb(200, 200, 200);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
+
 .ph:hover {
-  font-size: 25px;
+  color: rgb(255, 255, 255);
+  transform: scale(1.02);
 }
 h1 {
   font-size: 48px;
@@ -123,49 +184,119 @@ p {
   margin-bottom: 40px;
 }
 .audio {
-  position: absolute;
-  top: 1000px;
-  left: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
 }
 
-@media screen and (max-width: 600px) {
+.audio audio {
+  width: 250px;
+  height: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  nav a {
+    margin: 0 15px;
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  .content {
+    padding-top: 70px;
+  }
+
+  .logo {
+    height: 280px;
+    width: 280px;
+    top: 30%;
+  }
+
+  .text {
+    height: 320px;
+    width: 320px;
+    top: 30%;
+  }
+
+  .hh {
+    font-size: 32px;
+  }
+
+  .ph {
+    font-size: 16px;
+  }
+
+  .welcome {
+    bottom: 80px;
+    padding: 20px 30px;
+  }
+
+  .audio {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .audio audio {
+    width: 200px;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  nav {
+    padding: 10px 0;
+  }
+
+  nav a {
+    margin: 0 8px;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .content {
+    padding-top: 60px;
+  }
+
   .logo {
     height: 200px;
     width: 200px;
+    top: 28%;
   }
-  .text {
-    height: 250px;
-    width: 250px;
-  }
-  .hh {
-    font-size: 25px;
-  }
-  .ph {
-    font-size: 15px;
-  }
-  nav a {
-    margin: 20px;
-    font-size: 1em;
-  }
-}
 
-@media screen and (max-width: 400px) {
-  .logo {
-    height: 150px;
-    width: 150px;
-  }
   .text {
-    height: 200px;
-    width: 200px;
+    height: 230px;
+    width: 230px;
+    top: 28%;
   }
+
   .hh {
-    font-size: 20px;
+    font-size: 24px;
   }
+
   .ph {
-    font-size: 10px;
+    font-size: 14px;
   }
-  nav a {
-    margin: 10px;
-    font-size: 0.8em;
+
+  .welcome {
+    bottom: 60px;
+    padding: 15px 25px;
+    left: 15px;
+    right: 15px;
+    transform: none;
+  }
+
+  .audio {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+  }
+
+  .audio audio {
+    width: 100%;
+    height: 30px;
   }
 }
